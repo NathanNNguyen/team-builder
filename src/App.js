@@ -54,7 +54,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className='App'>
       My team
       <Members members={members} />
       <MemberForm addNewMember={addNewMember} />

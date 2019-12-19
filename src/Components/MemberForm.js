@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const MemberForm = props => {
   // console.log("this is our props",props);
@@ -9,8 +9,11 @@ const MemberForm = props => {
   });
 
   const handleChanges = e => {
+    // We can use push method to push the new member into the array but that would mutate the array directly
+    // Instead we are using the spread operator so the array won't get mutated and we still be able to add new member into it
+
     setMember({ ...member, [e.target.id]: e.target.value });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   }
 
   const submitForm = e => {
