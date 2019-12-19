@@ -1,24 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import MemberForm from './Components/MemberForm';
+import Members from './Components/Members';
+// import logo from './logo.svg';
+
 
 function App() {
+  // Rendering members
+  const [members, setMembers] = useState([
+    {
+      id: 0,
+      name: `Nathan Nguyen`,
+    },
+    {
+      id: 1,
+      name: `Alex Cooter`,
+    },
+    {
+      id: 2,
+      name: `Ashton Ragan`,
+    },
+    {
+      id: 3,
+      name: `Corell Brown`,
+    },
+    {
+      id: 4,
+      name: `Hiter Harris`,
+    },
+    {
+      id: 5,
+      name: `Prem Puttegowda`,
+    },
+    {
+      id: 6,
+      name: `Sandra B Coburn`,
+    },
+    {
+      id: 7,
+      name: `Aaron Fuller`,
+    }
+  ]);
+
+  // Make a function adding members
+  const addNewMember = member => {
+    const newMember = {
+      id: Date.now(),
+      name: member.name,
+      role: member.role,
+      email: member.email
+    };
+    setMembers([...members, newMember])
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      My team
+      <Members members={members} />
+      <MemberForm addNewMember={addNewMember} />
     </div>
   );
 }
