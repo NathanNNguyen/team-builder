@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const MemberForm = ({ addNewMember, editMember, setEditMember }) => {
+const MemberForm = ({ setMembers, members, addNewMember, editMember, setEditMember }) => {
   // console.log("this is our props",props);
   const [member, setMember] = useState({
     name: '',
@@ -25,19 +25,27 @@ const MemberForm = ({ addNewMember, editMember, setEditMember }) => {
     addNewMember(member)
   }
 
-  const submitEdit = e => {
+  const [memberToEdit, setMemberToEdit] = useState(null);
+
+  const edit = e => {
     e.preventDefault();
     if (editMember) {
-      setMember({
+      members[memberToEdit] = {
         name: member.name,
-        role: member.role,
-        email: member.email
-      });
+        email: member.email,
+        role: member.role
+      }
+      console.log(members[memberToEdit])
+      setMembers([...members])
+      setMember({
+        name: '',
+        role: '',
+        email: '',
+      })
       setEditMember(false)
-    } else {
-      setEditMember(true);
     }
   }
+
 
   return (
     <form >
@@ -51,7 +59,7 @@ const MemberForm = ({ addNewMember, editMember, setEditMember }) => {
       <input id="email" name='email' type='email' placeholder='email' value={member.email} onChange={handleChanges} />
 
       <button onClick={submitForm}> Add member </button>
-      <button onClick={submitEdit} >Edit</button>
+      <button onClick={edit} >Edit</button>
     </form>
   )
 }

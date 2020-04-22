@@ -60,7 +60,6 @@ function App() {
 
   const [editMember, setEditMember] = useState(false);
 
-
   // Make a function adding members
   const addNewMember = member => {
     const newMember = {
@@ -72,21 +71,11 @@ function App() {
     setMembers([...members, newMember])
   }
 
-  const edit = member => {
-    const memberToEdit = {
-      id: member.id,
-      name: member.name,
-      role: member.role,
-      email: member.email
-    };
-    setMembers([...members, memberToEdit])
-  }
-
   return (
     <div className='App'>
       <h1>Team builder</h1>
       <Members members={members} setEditMember={setEditMember} />
-      <MemberForm addNewMember={addNewMember} editMember={editMember} setEditMember={setEditMember} edit={edit} />
+      <MemberForm members={members} setMembers={setMembers} addNewMember={addNewMember} editMember={editMember} setEditMember={setEditMember} />
     </div>
   );
 }
